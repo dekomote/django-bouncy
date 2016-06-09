@@ -12,8 +12,8 @@ class Feedback(models.Model):
     mail_id = models.CharField(max_length=100)
     mail_from = models.EmailField()
     address = models.EmailField()
-    feedback_id = models.CharField(max_length=100)
-    feedback_timestamp = models.DateTimeField(verbose_name="Feedback Time")
+    feedback_id = models.CharField(max_length=100, null=True, blank=True)
+    feedback_timestamp = models.DateTimeField(verbose_name="Feedback Time", null=True, blank=True)
 
     class Meta(object):
         """Meta info for Feedback Abstract Model"""
@@ -34,7 +34,7 @@ class Bounce(Feedback):
     )
     status = models.CharField(
         db_index=True, null=True, blank=True, max_length=150)
-    diagnostic_code = models.CharField(null=True, blank=True, max_length=150)
+    diagnostic_code = models.CharField(null=True, blank=True, max_length=5000)
 
     def __unicode__(self):
         """Unicode representation of Bounce"""
